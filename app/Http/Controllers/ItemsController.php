@@ -18,7 +18,7 @@ class ItemsController extends Controller
     public function index(User $user)
     {
         $this->authorize('viewAny', [Item::class, $user]);
-        $items = Item::all();
+        $items = $user->items;
         return Inertia::render('Items/Index.vue', compact('items', 'user'));
     }
 
