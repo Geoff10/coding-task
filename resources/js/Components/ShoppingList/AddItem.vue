@@ -23,6 +23,7 @@
             return {
                 item: {
                     name: '',
+                    purchased: false,
                 }
             }
         },
@@ -31,6 +32,7 @@
             clearItem() {
                 this.item = {
                     name: '',
+                    purchased: false,
                 }
             },
             addItem() {

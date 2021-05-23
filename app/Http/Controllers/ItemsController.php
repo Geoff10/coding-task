@@ -17,9 +17,11 @@ class ItemsController extends Controller
         $items = [
             [
                 "name" => "Tofu",
+                "purchased" => false,
             ],
             [
                 "name" => "Courgette",
+                "purchased" => false,
             ],
         ];
         return Inertia::render('Items/Index.vue', compact('items'));
