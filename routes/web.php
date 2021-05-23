@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ItemsController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -26,9 +27,9 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return redirect()->route('users.items.index', [Auth::user()]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('users.items', ItemsController::class)->except(['create', 'show', 'edit']);
+Route::resource('users.items', ItemsController::class)->except(['create', 'show', 'edit'])->middleware(['auth']);
 
 require __DIR__.'/auth.php';
