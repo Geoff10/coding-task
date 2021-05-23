@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
 class ItemTest extends TestCase
@@ -20,6 +21,7 @@ class ItemTest extends TestCase
     public function testItemCanBeCreated()
     {
         $user = User::factory()->create();
+        Auth::login($user);
         $item = 'Spinach';
 
         $response = $this->post(route('users.items.store', [$user]), [
@@ -41,6 +43,7 @@ class ItemTest extends TestCase
     public function testItemCanBeMarkedAsPurchased()
     {
         $user = User::factory()->create();
+        Auth::login($user);
         $item = Item::factory()->create();
 
         $response = $this->put(route('users.items.update', [$user, $item]), [
@@ -63,6 +66,7 @@ class ItemTest extends TestCase
     public function testItemCanBeMarkedAsNotPurchased()
     {
         $user = User::factory()->create();
+        Auth::login($user);
         $item = Item::factory()->purchased()->create();
 
         $response = $this->put(route('users.items.update', [$user, $item]), [
@@ -85,6 +89,7 @@ class ItemTest extends TestCase
     public function testItemCanBeDeleted()
     {
         $user = User::factory()->create();
+        Auth::login($user);
         $item = Item::factory()->create();
 
         $this->assertDatabaseHas('items', [
