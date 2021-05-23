@@ -24,6 +24,7 @@ class CreateItemsTest extends DuskTestCase
                 ->assertDontSee($new_item)
                 ->type('new_item_name', $new_item)
                 ->click('#new-item-submit')
+                ->pause( 500)
                 ->assertSee($new_item) // Check the new item is in the list
                 ->assertDontSeeIn('#new-item-name', $new_item) // Check form is empty
                 ->refresh()
