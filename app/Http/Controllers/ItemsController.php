@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ItemsController extends Controller
@@ -33,9 +34,10 @@ class ItemsController extends Controller
 
         $item = new Item();
         $item->name = $request->name;
+        $item->user_id = Auth::id();
         $item->save();
 
-        return redirect()->route('items.index');
+        return redirect()->route('users.items.index', [Auth::user()]);
     }
 
     /**
@@ -54,7 +56,7 @@ class ItemsController extends Controller
         $item->purchased = $request->purchased;
         $item->save();
 
-        return redirect()->route('items.index');
+        return redirect()->route('users.items.index', [Auth::user()]);
     }
 
     /**
@@ -67,6 +69,6 @@ class ItemsController extends Controller
     {
         $item->delete();
 
-        return redirect()->route('items.index');
+        return redirect()->route('users.items.index', [Auth::user()]);
     }
 }
