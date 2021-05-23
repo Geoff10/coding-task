@@ -51,6 +51,7 @@ class CreateItemsTest extends DuskTestCase
             $browser->assertSee($first_item)
                 ->type('new_item_name', $first_item)
                 ->click('#new-item-submit')
+                ->pause( 500)
                 ->assertDontSeeIn('#new-item-name', $first_item); // Check form is empty
 
             $this->assertCount(
