@@ -6,6 +6,7 @@ use App\Models\Item;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Inertia\Inertia;
 
 class ItemsController extends Controller
@@ -31,9 +32,14 @@ class ItemsController extends Controller
     public function store(Request $request, User $user)
     {
         $this->authorize('create', [Item::class, $user]);
-        $request->validate([
+
+        Validator::make($request->all(),[
             'name' => ['required'],
-        ]);
+        ])->after(function($validator) use ($user) {
+            if (Item::whereUserId($user->id)->whereName(request()->name)->count() > 0) {
+                $validator->errors()->add('name', __('This item already exists.'));
+            }
+        })->validate();
 
         $item = new Item();
         $item->name = $request->name;
