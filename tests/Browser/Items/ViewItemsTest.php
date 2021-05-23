@@ -9,6 +9,8 @@ use Tests\DuskTestCase;
 
 class ViewItemsTest extends DuskTestCase
 {
+    use DatabaseMigrations;
+
     /**
      * Check that the shopping list items can be viewed.
      *
@@ -16,7 +18,7 @@ class ViewItemsTest extends DuskTestCase
      */
     public function testItemListCanBeViewed()
     {
-        $items = Item::factory()->create(2)->make();
+        $items = Item::factory()->count(2)->create();
 
         $this->browse(function (Browser $browser) use ($items) {
             $browser->visit('/items');

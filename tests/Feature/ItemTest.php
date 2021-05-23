@@ -38,7 +38,7 @@ class ItemTest extends TestCase
      */
     public function testItemCanBeMarkedAsPurchased()
     {
-        $item = Item::factory()->make();
+        $item = Item::factory()->create();
 
         $response = $this->put("/items/{$item->id}", [
             'purchased' => true,
@@ -59,7 +59,7 @@ class ItemTest extends TestCase
      */
     public function testItemCanBeMarkedAsNotPurchased()
     {
-        $item = Item::factory()->purchased()->make();
+        $item = Item::factory()->purchased()->create();
 
         $response = $this->put("/items/{$item->id}", [
             'purchased' => false,
@@ -80,7 +80,7 @@ class ItemTest extends TestCase
      */
     public function testItemCanBeDeleted()
     {
-        $item = Item::factory()->make();
+        $item = Item::factory()->create();
 
         $this->assertDatabaseHas('items', [
             'id' => $item->id,
