@@ -26,7 +26,7 @@ class CrossOffItemsTest extends DuskTestCase
 
             $checkbox = "#shopping-item-1 input[type=checkbox]";
             $browser->loginAs($user);
-            $browser->visitRoute('users.items', [$user])
+            $browser->visitRoute('users.items.index', [$user])
                     ->assertNotChecked($checkbox)
                     ->check($checkbox)
                     ->pause(500)

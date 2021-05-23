@@ -25,7 +25,7 @@ class RemoveItemsTest extends DuskTestCase
             Item::factory()->count(2)->for($user)->create();
 
             $browser->loginAs($user);
-            $browser->visitRoute('users.items', [$user]);
+            $browser->visitRoute('users.items.index', [$user]);
             $initial_item_count = count($browser->elements('.shopping-item'));
             $first_item = $browser->text('#shopping-item-1 .name');
 

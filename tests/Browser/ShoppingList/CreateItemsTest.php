@@ -24,7 +24,7 @@ class CreateItemsTest extends DuskTestCase
 
             $new_item = 'Spinach';
             $browser->loginAs($user);
-            $browser->visitRoute('users.items', [$user])
+            $browser->visitRoute('users.items.index', [$user])
                 ->assertDontSee($new_item)
                 ->type('new_item_name', $new_item)
                 ->click('#new-item-submit')
@@ -44,7 +44,7 @@ class CreateItemsTest extends DuskTestCase
             Item::factory()->count(2)->for($user)->create();
 
             $browser->loginAs($user);
-            $browser->visitRoute('users.items', [$user]);
+            $browser->visitRoute('users.items.index', [$user]);
             $initial_item_count = count($browser->elements('.shopping-item'));
             $first_item = $browser->text('#shopping-item-1 .name');
 

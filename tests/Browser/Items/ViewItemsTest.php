@@ -25,7 +25,7 @@ class ViewItemsTest extends DuskTestCase
             $items = Item::factory()->count(2)->for($user)->create();
 
             $browser->loginAs($user);
-            $browser->visitRoute('users.items', [$user]);
+            $browser->visitRoute('users.items.index', [$user]);
 
             foreach ($items as $item) {
                 $browser->assertSee($item->name);
@@ -47,7 +47,7 @@ class ViewItemsTest extends DuskTestCase
             $other_items = Item::factory()->count(2)->create();
 
             $browser->loginAs($user);
-            $browser->visitRoute('users.items', [$user]);
+            $browser->visitRoute('users.items.index', [$user]);
 
             foreach ($user_items as $item) {
                 $browser->assertSee($item->name);
