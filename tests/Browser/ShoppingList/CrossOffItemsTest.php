@@ -25,6 +25,7 @@ class CrossOffItemsTest extends DuskTestCase
             $browser->visit('/items')
                     ->assertNotChecked($checkbox)
                     ->check($checkbox)
+                    ->pause(500)
                     ->assertChecked($checkbox)
                     ->assertAttribute("#shopping-item-1 div span.name", 'class', 'name line-through')
                     ->refresh()

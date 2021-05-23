@@ -16883,8 +16883,18 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     Checkbox: _Components_Checkbox__WEBPACK_IMPORTED_MODULE_0__.default
   },
+  watch: {
+    purchased: function purchased() {
+      this.$inertia.put('/items/' + this.item.id, this.item);
+    }
+  },
   props: {
     item: Object
+  },
+  computed: {
+    purchased: function purchased() {
+      return this.item.purchased;
+    }
   },
   methods: {
     deleteItem: function deleteItem() {
@@ -17848,10 +17858,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     modelValue: $props.item.purchased,
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $props.item.purchased = $event;
-    })
+    }),
+    checked: $props.item.purchased
   }, null, 8
   /* PROPS */
-  , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
+  , ["modelValue", "checked"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", {
     "class": ["name", {
       'line-through': $props.item.purchased
     }]
