@@ -11002,6 +11002,38 @@ select {
   cursor: not-allowed;
 }
 
+.hover\:cursor-auto:hover {
+  cursor: auto;
+}
+
+.hover\:cursor-default:hover {
+  cursor: default;
+}
+
+.hover\:cursor-pointer:hover {
+  cursor: pointer;
+}
+
+.hover\:cursor-wait:hover {
+  cursor: wait;
+}
+
+.hover\:cursor-text:hover {
+  cursor: text;
+}
+
+.hover\:cursor-move:hover {
+  cursor: move;
+}
+
+.hover\:cursor-help:hover {
+  cursor: help;
+}
+
+.hover\:cursor-not-allowed:hover {
+  cursor: not-allowed;
+}
+
 .block {
   display: block;
 }
@@ -42343,6 +42375,38 @@ select {
     cursor: not-allowed;
   }
 
+  .sm\:hover\:cursor-auto:hover {
+    cursor: auto;
+  }
+
+  .sm\:hover\:cursor-default:hover {
+    cursor: default;
+  }
+
+  .sm\:hover\:cursor-pointer:hover {
+    cursor: pointer;
+  }
+
+  .sm\:hover\:cursor-wait:hover {
+    cursor: wait;
+  }
+
+  .sm\:hover\:cursor-text:hover {
+    cursor: text;
+  }
+
+  .sm\:hover\:cursor-move:hover {
+    cursor: move;
+  }
+
+  .sm\:hover\:cursor-help:hover {
+    cursor: help;
+  }
+
+  .sm\:hover\:cursor-not-allowed:hover {
+    cursor: not-allowed;
+  }
+
   .sm\:block {
     display: block;
   }
@@ -73511,6 +73575,38 @@ select {
   }
 
   .md\:cursor-not-allowed {
+    cursor: not-allowed;
+  }
+
+  .md\:hover\:cursor-auto:hover {
+    cursor: auto;
+  }
+
+  .md\:hover\:cursor-default:hover {
+    cursor: default;
+  }
+
+  .md\:hover\:cursor-pointer:hover {
+    cursor: pointer;
+  }
+
+  .md\:hover\:cursor-wait:hover {
+    cursor: wait;
+  }
+
+  .md\:hover\:cursor-text:hover {
+    cursor: text;
+  }
+
+  .md\:hover\:cursor-move:hover {
+    cursor: move;
+  }
+
+  .md\:hover\:cursor-help:hover {
+    cursor: help;
+  }
+
+  .md\:hover\:cursor-not-allowed:hover {
     cursor: not-allowed;
   }
 
@@ -104685,6 +104781,38 @@ select {
     cursor: not-allowed;
   }
 
+  .lg\:hover\:cursor-auto:hover {
+    cursor: auto;
+  }
+
+  .lg\:hover\:cursor-default:hover {
+    cursor: default;
+  }
+
+  .lg\:hover\:cursor-pointer:hover {
+    cursor: pointer;
+  }
+
+  .lg\:hover\:cursor-wait:hover {
+    cursor: wait;
+  }
+
+  .lg\:hover\:cursor-text:hover {
+    cursor: text;
+  }
+
+  .lg\:hover\:cursor-move:hover {
+    cursor: move;
+  }
+
+  .lg\:hover\:cursor-help:hover {
+    cursor: help;
+  }
+
+  .lg\:hover\:cursor-not-allowed:hover {
+    cursor: not-allowed;
+  }
+
   .lg\:block {
     display: block;
   }
@@ -135856,6 +135984,38 @@ select {
     cursor: not-allowed;
   }
 
+  .xl\:hover\:cursor-auto:hover {
+    cursor: auto;
+  }
+
+  .xl\:hover\:cursor-default:hover {
+    cursor: default;
+  }
+
+  .xl\:hover\:cursor-pointer:hover {
+    cursor: pointer;
+  }
+
+  .xl\:hover\:cursor-wait:hover {
+    cursor: wait;
+  }
+
+  .xl\:hover\:cursor-text:hover {
+    cursor: text;
+  }
+
+  .xl\:hover\:cursor-move:hover {
+    cursor: move;
+  }
+
+  .xl\:hover\:cursor-help:hover {
+    cursor: help;
+  }
+
+  .xl\:hover\:cursor-not-allowed:hover {
+    cursor: not-allowed;
+  }
+
   .xl\:block {
     display: block;
   }
@@ -167024,6 +167184,38 @@ select {
   }
 
   .\32xl\:cursor-not-allowed {
+    cursor: not-allowed;
+  }
+
+  .\32xl\:hover\:cursor-auto:hover {
+    cursor: auto;
+  }
+
+  .\32xl\:hover\:cursor-default:hover {
+    cursor: default;
+  }
+
+  .\32xl\:hover\:cursor-pointer:hover {
+    cursor: pointer;
+  }
+
+  .\32xl\:hover\:cursor-wait:hover {
+    cursor: wait;
+  }
+
+  .\32xl\:hover\:cursor-text:hover {
+    cursor: text;
+  }
+
+  .\32xl\:hover\:cursor-move:hover {
+    cursor: move;
+  }
+
+  .\32xl\:hover\:cursor-help:hover {
+    cursor: help;
+  }
+
+  .\32xl\:hover\:cursor-not-allowed:hover {
     cursor: not-allowed;
   }
 
