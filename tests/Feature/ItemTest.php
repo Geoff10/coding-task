@@ -50,7 +50,7 @@ class ItemTest extends TestCase
             'purchased' => true,
         ]);
 
-        $response->assertRedirect(route('users.items.index' [$user]));
+        $response->assertRedirect(route('users.items.index', [$user]));
 
         $this->assertDatabaseHas('items', [
             'id' => $item->id,
@@ -73,7 +73,7 @@ class ItemTest extends TestCase
             'purchased' => false,
         ]);
 
-        $response->assertRedirect(route('users.items.index' [$user]));
+        $response->assertRedirect(route('users.items.index', [$user]));
 
         $this->assertDatabaseHas('items', [
             'id' => $item->id,
@@ -100,7 +100,7 @@ class ItemTest extends TestCase
             'purchased' => false,
         ]);
 
-        $response->assertRedirect(route('users.items.index' [$user]));
+        $response->assertRedirect(route('users.items.index', [$user]));
 
         $this->assertDatabaseMissing('items', [
             'id' => $item->id,
