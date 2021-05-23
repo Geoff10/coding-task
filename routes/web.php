@@ -29,6 +29,6 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::resource('items', ItemsController::class)->except(['create', 'show', 'edit']);
+Route::resource('users.items', ItemsController::class)->except(['create', 'show', 'edit']);
 
 require __DIR__.'/auth.php';

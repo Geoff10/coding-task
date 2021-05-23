@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -18,13 +19,14 @@ class ItemTest extends TestCase
      */
     public function testItemCanBeCreated()
     {
+        $user = User::factory()->create();
         $item = 'Spinach';
 
-        $response = $this->post('/items', [
+        $response = $this->post(route('users.items.store', [$user]), [
             'name' => $item,
         ]);
 
-        $response->assertRedirect('/items');
+        $response->assertRedirect(route('users.items.index', [$user]));
 
         $this->assertDatabaseHas('items', [
             'name' => $item
@@ -38,13 +40,14 @@ class ItemTest extends TestCase
      */
     public function testItemCanBeMarkedAsPurchased()
     {
+        $user = User::factory()->create();
         $item = Item::factory()->create();
 
-        $response = $this->put("/items/{$item->id}", [
+        $response = $this->put(route('users.items.update', [$user, $item]), [
             'purchased' => true,
         ]);
 
-        $response->assertRedirect('/items');
+        $response->assertRedirect(route('users.items.index' [$user]));
 
         $this->assertDatabaseHas('items', [
             'id' => $item->id,
@@ -59,13 +62,14 @@ class ItemTest extends TestCase
      */
     public function testItemCanBeMarkedAsNotPurchased()
     {
+        $user = User::factory()->create();
         $item = Item::factory()->purchased()->create();
 
-        $response = $this->put("/items/{$item->id}", [
+        $response = $this->put(route('users.items.update', [$user, $item]), [
             'purchased' => false,
         ]);
 
-        $response->assertRedirect('/items');
+        $response->assertRedirect(route('users.items.index' [$user]));
 
         $this->assertDatabaseHas('items', [
             'id' => $item->id,
@@ -80,17 +84,18 @@ class ItemTest extends TestCase
      */
     public function testItemCanBeDeleted()
     {
+        $user = User::factory()->create();
         $item = Item::factory()->create();
 
         $this->assertDatabaseHas('items', [
             'id' => $item->id,
         ]);
 
-        $response = $this->delete("/items/{$item->id}", [
+        $response = $this->delete(route('users.items.destroy', [$user, $item]), [
             'purchased' => false,
         ]);
 
-        $response->assertRedirect('/items');
+        $response->assertRedirect(route('users.items.index' [$user]));
 
         $this->assertDatabaseMissing('items', [
             'id' => $item->id,

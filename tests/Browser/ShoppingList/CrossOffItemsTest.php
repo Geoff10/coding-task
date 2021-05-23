@@ -3,6 +3,7 @@
 namespace Tests\Browser\ShoppingList;
 
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -18,11 +19,14 @@ class CrossOffItemsTest extends DuskTestCase
      */
     public function testItemCanBeCrossedOffTheListExample()
     {
-        Item::factory()->count(2)->create();
 
         $this->browse(function (Browser $browser) {
+            $user = User::factory()->create();
+            Item::factory()->count(2)->for($user)->create();
+
             $checkbox = "#shopping-item-1 input[type=checkbox]";
-            $browser->visit('/items')
+            $browser->loginAs($user);
+            $browser->visitRoute('users.items', [$user])
                     ->assertNotChecked($checkbox)
                     ->check($checkbox)
                     ->pause(500)

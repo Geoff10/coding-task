@@ -19,10 +19,13 @@ class ViewItemsTest extends DuskTestCase
      */
     public function testItemListCanBeViewed()
     {
-        $items = Item::factory()->count(2)->create();
 
-        $this->browse(function (Browser $browser) use ($items) {
-            $browser->visit('/items');
+        $this->browse(function (Browser $browser) {
+            $user = User::factory()->create();
+            $items = Item::factory()->count(2)->for($user)->create();
+
+            $browser->loginAs($user);
+            $browser->visitRoute('users.items', [$user]);
 
             foreach ($items as $item) {
                 $browser->assertSee($item->name);
@@ -37,12 +40,14 @@ class ViewItemsTest extends DuskTestCase
      */
     public function testOnlyUsersItemListCanBeViewed()
     {
-        $user = User::factory()->create();
-        $user_items = Item::factory()->count(2)->for($user)->create();
-        $other_items = Item::factory()->count(2)->create();
 
-        $this->browse(function (Browser $browser) use ($user_items, $other_items) {
-            $browser->visit('/items');
+        $this->browse(function (Browser $browser) {
+            $user = User::factory()->create();
+            $user_items = Item::factory()->count(2)->for($user)->create();
+            $other_items = Item::factory()->count(2)->create();
+
+            $browser->loginAs($user);
+            $browser->visitRoute('users.items', [$user]);
 
             foreach ($user_items as $item) {
                 $browser->assertSee($item->name);

@@ -3,6 +3,7 @@
 namespace Tests\Browser\ShoppingList;
 
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -18,10 +19,13 @@ class RemoveItemsTest extends DuskTestCase
      */
     public function testItemCanBeRemoved()
     {
-        Item::factory()->count(2)->create();
 
         $this->browse(function (Browser $browser) {
-            $browser->visit('/items');
+            $user = User::factory()->create();
+            Item::factory()->count(2)->for($user)->create();
+
+            $browser->loginAs($user);
+            $browser->visitRoute('users.items', [$user]);
             $initial_item_count = count($browser->elements('.shopping-item'));
             $first_item = $browser->text('#shopping-item-1 .name');
 

@@ -3,6 +3,7 @@
 namespace Tests\Browser\ShoppingList;
 
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -19,8 +20,11 @@ class CreateItemsTest extends DuskTestCase
     public function testNewItemCanBeAddedToList()
     {
         $this->browse(function (Browser $browser) {
+            $user = User::factory()->create();
+
             $new_item = 'Spinach';
-            $browser->visit('/items')
+            $browser->loginAs($user);
+            $browser->visitRoute('users.items', [$user])
                 ->assertDontSee($new_item)
                 ->type('new_item_name', $new_item)
                 ->click('#new-item-submit')
@@ -34,10 +38,13 @@ class CreateItemsTest extends DuskTestCase
 
     public function testDuplicateItemCannotBeAddedToList()
     {
-        Item::factory()->count(2)->create();
 
         $this->browse(function (Browser $browser) {
-            $browser->visit('/items');
+            $user = User::factory()->create();
+            Item::factory()->count(2)->for($user)->create();
+
+            $browser->loginAs($user);
+            $browser->visitRoute('users.items', [$user]);
             $initial_item_count = count($browser->elements('.shopping-item'));
             $first_item = $browser->text('#shopping-item-1 .name');
 
