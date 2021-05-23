@@ -12,4 +12,9 @@ class Item extends Model
     protected $casts = [
         'purchased' => 'boolean',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
