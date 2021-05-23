@@ -3,6 +3,7 @@
         <div class="py-2 font-bold">
             <div class="px-1">Item</div>
         </div>
+        <add-shopping-list-item @addItem="$emit('addItem', $event)"></add-shopping-list-item>
         <shopping-list-item v-for="(item, id) in items" :key="id" v-model:item="items[id]" :id="'shopping-item-' + id"></shopping-list-item>
     </div>
     <div v-else>No items on the shopping list yet.</div>
@@ -10,10 +11,12 @@
 
 <script>
     import ShoppingListItem from '@/Components/ShoppingList/Item'
+    import AddShoppingListItem from '@/Components/ShoppingList/AddItem'
 
     export default {
         components: {
             ShoppingListItem,
+            AddShoppingListItem,
         },
 
         props: {
