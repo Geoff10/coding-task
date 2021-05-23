@@ -10,7 +10,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        <shopping-list :items="items" :errors="errors" @addItem="addItem($event)" @deleteItem="deleteItem($event)"></shopping-list>
+                        <shopping-list :items="items" :errors="errors" @deleteItem="deleteItem($event)"></shopping-list>
                     </div>
                 </div>
             </div>
@@ -35,17 +35,9 @@
         },
 
         methods: {
-            addItem(e) {
-                if (!this.itemExists(e.name)) {
-                    this.items.unshift(e);
-                }
-            },
             deleteItem(id) {
                 this.items.splice(id, 1);
             },
-            itemExists(name) {
-                return (this.items.filter(item => item.name == name).length > 0);
-            }
         }
     }
 </script>

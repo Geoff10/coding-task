@@ -2,7 +2,7 @@
     <div class="py-2 font-bold">
         <div class="px-1">Item</div>
     </div>
-    <add-shopping-list-item :errors="errors" @addItem="$emit('addItem', $event)"></add-shopping-list-item>
+    <add-shopping-list-item :errors="errors"></add-shopping-list-item>
     <div v-if="hasItems">
         <shopping-list-item v-for="(item, id) in items" :key="id" v-model:item="items[id]" :id="'shopping-item-' + item.id" @deleteItem="$emit('deleteItem', item.id)"></shopping-list-item>
     </div>

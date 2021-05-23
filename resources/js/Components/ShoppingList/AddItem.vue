@@ -15,8 +15,6 @@
     import FormButton from '@/Components/Button'
 
     export default {
-        emits: ['AddItem'],
-
         props: {
             errors: Object,
         },
