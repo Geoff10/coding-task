@@ -10,7 +10,7 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        <shopping-list :items="items" :errors="errors" @deleteItem="deleteItem($event)"></shopping-list>
+                        <shopping-list :items="items" :errors="errors"></shopping-list>
                     </div>
                 </div>
             </div>
@@ -33,11 +33,5 @@
             errors: Object,
             items: Array,
         },
-
-        methods: {
-            deleteItem(id) {
-                this.items.splice(id, 1);
-            },
-        }
     }
 </script>

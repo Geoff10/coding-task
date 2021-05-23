@@ -22,7 +22,7 @@
 
         methods: {
             deleteItem() {
-                this.$emit('deleteItem', this.item);
+                this.$inertia.delete('/items/' + this.item.id);
             }
         }
     }

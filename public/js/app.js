@@ -16830,7 +16830,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  emits: ['AddItem'],
   props: {
     errors: Object
   },
@@ -16889,7 +16888,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     deleteItem: function deleteItem() {
-      this.$emit('deleteItem', this.item);
+      this.$inertia["delete"]('/items/' + this.item.id);
     }
   }
 });
@@ -17432,21 +17431,6 @@ __webpack_require__.r(__webpack_exports__);
     auth: Object,
     errors: Object,
     items: Array
-  },
-  methods: {
-    addItem: function addItem(e) {
-      if (!this.itemExists(e.name)) {
-        this.items.unshift(e);
-      }
-    },
-    deleteItem: function deleteItem(id) {
-      this.items.splice(id, 1);
-    },
-    itemExists: function itemExists(name) {
-      return this.items.filter(function (item) {
-        return item.name == name;
-      }).length > 0;
-    }
   }
 });
 
@@ -17918,10 +17902,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_shopping_list_item = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("shopping-list-item");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_add_shopping_list_item, {
-    errors: $props.errors,
-    onAddItem: _cache[1] || (_cache[1] = function ($event) {
-      return _ctx.$emit('addItem', $event);
-    })
+    errors: $props.errors
   }, null, 8
   /* PROPS */
   , ["errors"]), $options.hasItems ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.items, function (item, id) {
@@ -17931,13 +17912,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       "onUpdate:item": function onUpdateItem($event) {
         return $props.items[id] = $event;
       },
-      id: 'shopping-item-' + item.id,
-      onDeleteItem: function onDeleteItem($event) {
-        return _ctx.$emit('deleteItem', item.id);
-      }
+      id: 'shopping-item-' + item.id
     }, null, 8
     /* PROPS */
-    , ["item", "onUpdate:item", "id", "onDeleteItem"]);
+    , ["item", "onUpdate:item", "id"]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_3, "No items on the shopping list yet."))], 64
@@ -19130,13 +19108,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_shopping_list, {
         items: $props.items,
-        errors: $props.errors,
-        onAddItem: _cache[1] || (_cache[1] = function ($event) {
-          return $options.addItem($event);
-        }),
-        onDeleteItem: _cache[2] || (_cache[2] = function ($event) {
-          return $options.deleteItem($event);
-        })
+        errors: $props.errors
       }, null, 8
       /* PROPS */
       , ["items", "errors"])])])])])];

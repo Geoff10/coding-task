@@ -27,6 +27,7 @@ class RemoveItemsTest extends DuskTestCase
 
             $browser->assertSee($first_item)
                     ->click('#shopping-item-1 .delete-btn')
+                    ->pause(500)
                     ->assertDontSee($first_item);
 
             $this->assertCount(
