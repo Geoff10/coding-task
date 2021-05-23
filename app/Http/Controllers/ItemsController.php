@@ -15,10 +15,11 @@ class ItemsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user, )
+    public function index(User $user)
     {
+        $this->authorize('viewAny', [Item::class, $user]);
         $items = Item::all();
-        return Inertia::render('Items/Index.vue', compact('items'));
+        return Inertia::render('Items/Index.vue', compact('items', 'user'));
     }
 
     /**
@@ -29,6 +30,7 @@ class ItemsController extends Controller
      */
     public function store(Request $request, User $user)
     {
+        $this->authorize('create', [Item::class, $user]);
         $request->validate([
             'name' => ['required'],
         ]);
@@ -50,6 +52,7 @@ class ItemsController extends Controller
      */
     public function update(Request $request, User $user, Item $item)
     {
+        $this->authorize('update', [$item]);
         $request->validate([
             'purchased' => ['required', 'boolean'],
         ]);
@@ -68,6 +71,7 @@ class ItemsController extends Controller
      */
     public function destroy(User $user, Item $item)
     {
+        $this->authorize('delete', [$item]);
         $item->delete();
 
         return redirect()->route('users.items.index', [Auth::user()]);

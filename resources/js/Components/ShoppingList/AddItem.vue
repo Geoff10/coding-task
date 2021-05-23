@@ -17,6 +17,7 @@
     export default {
         props: {
             errors: Object,
+            user: Object,
         },
 
         components: {
@@ -41,7 +42,7 @@
                 }
             },
             addItem() {
-                this.$inertia.post('/items', this.item, {
+                this.$inertia.post('/users/' + this.user.id + '/items', this.item, {
                     onSuccess: page => {
                         this.clearItem();
                     },

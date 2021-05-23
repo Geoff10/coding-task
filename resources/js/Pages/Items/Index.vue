@@ -1,5 +1,5 @@
 <template>
-    <breeze-unauthenticated-layout>
+    <breeze-authenticated-layout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Shopping List
@@ -10,21 +10,21 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-white border-b border-gray-200">
-                        <shopping-list :items="items" :errors="errors"></shopping-list>
+                        <shopping-list :user="user" :items="items" :errors="errors"></shopping-list>
                     </div>
                 </div>
             </div>
         </div>
-    </breeze-unauthenticated-layout>
+    </breeze-authenticated-layout>
 </template>
 
 <script>
-    import BreezeUnauthenticatedLayout from '@/Layouts/Unauthenticated'
+    import BreezeAuthenticatedLayout from '@/Layouts/Authenticated'
     import ShoppingList from '@/Components/ShoppingList/List'
 
     export default {
         components: {
-            BreezeUnauthenticatedLayout,
+            BreezeAuthenticatedLayout,
             ShoppingList,
         },
 
@@ -32,6 +32,7 @@
             auth: Object,
             errors: Object,
             items: Array,
+            user: Object,
         },
     }
 </script>

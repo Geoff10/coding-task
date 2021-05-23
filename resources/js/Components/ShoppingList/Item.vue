@@ -18,12 +18,13 @@
 
         watch: {
             purchased() {
-                this.$inertia.put('/items/' + this.item.id, this.item);
+                this.$inertia.put('/users/' + this.user.id + '/items/' + this.item.id, this.item);
             }
         },
 
         props: {
             item: Object,
+            user: Object,
         },
 
         computed: {
@@ -34,7 +35,7 @@
 
         methods: {
             deleteItem() {
-                this.$inertia.delete('/items/' + this.item.id);
+                this.$inertia.delete('/users/' + this.user.id + '/items/' + this.item.id);
             }
         }
     }
