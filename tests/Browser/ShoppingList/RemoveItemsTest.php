@@ -18,16 +18,24 @@ class RemoveItemsTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/items');
             $initial_item_count = count($browser->elements('.shopping-item'));
-            $first_item = $browser->text('#shopping-item-0 .name');
+            $first_item = $browser->text('#shopping-item-1 .name');
 
             $browser->assertSee($first_item)
-                    ->click('#shopping-item-0 .delete-btn')
+                    ->click('#shopping-item-1 .delete-btn')
                     ->assertDontSee($first_item);
 
             $this->assertCount(
                 $initial_item_count - 1,
                 $browser->elements('.shopping-item'),
                 'There is an unexpected number of items on the page. An item may not have been deleted.'
+            );
+
+            $browser->refresh();
+
+            $this->assertCount(
+                $initial_item_count - 1,
+                $browser->elements('.shopping-item'),
+                'Item deletion is not persisting across page reloads.'
             );
         });
     }

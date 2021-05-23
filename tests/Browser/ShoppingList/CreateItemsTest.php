@@ -22,7 +22,9 @@ class CreateItemsTest extends DuskTestCase
                 ->type('new_item_name', $new_item)
                 ->click('#new-item-submit')
                 ->assertSee($new_item) // Check the new item is in the list
-                ->assertDontSeeIn('#new-item-name', $new_item); // Check form is empty
+                ->assertDontSeeIn('#new-item-name', $new_item) // Check form is empty
+                ->refresh()
+                ->assertSee($new_item, 'Create item is not persisting across page reloads');
         });
     }
 
@@ -31,7 +33,7 @@ class CreateItemsTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('/items');
             $initial_item_count = count($browser->elements('.shopping-item'));
-            $first_item = $browser->text('#shopping-item-0 .name');
+            $first_item = $browser->text('#shopping-item-1 .name');
 
             $browser->assertSee($first_item)
                 ->type('new_item_name', $first_item)

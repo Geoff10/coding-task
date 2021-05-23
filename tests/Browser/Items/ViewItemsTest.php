@@ -2,6 +2,7 @@
 
 namespace Tests\Browser\ShoppingList;
 
+use App\Models\Item;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -15,10 +16,14 @@ class ViewItemsTest extends DuskTestCase
      */
     public function testItemListCanBeViewed()
     {
-        $this->browse(function (Browser $browser) {
-            $browser->visit('/items')
-                    ->assertSee('Tofu')
-                    ->assertSee('Courgette');
+        $items = Item::factory()->create(2)->make();
+
+        $this->browse(function (Browser $browser) use ($items) {
+            $browser->visit('/items');
+
+            foreach ($items as $item) {
+                $browser->assertSee($item->name);
+            }
         });
     }
 }

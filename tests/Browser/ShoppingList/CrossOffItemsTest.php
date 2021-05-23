@@ -16,12 +16,14 @@ class CrossOffItemsTest extends DuskTestCase
     public function testItemCanBeCrossedOffTheListExample()
     {
         $this->browse(function (Browser $browser) {
-            $checkbox = "#shopping-item-0 input[type=checkbox]";
+            $checkbox = "#shopping-item-1 input[type=checkbox]";
             $browser->visit('/items')
                     ->assertNotChecked($checkbox)
                     ->check($checkbox)
                     ->assertChecked($checkbox)
-                    ->assertAttribute("#shopping-item-0 div span.name", 'class', 'name line-through');
+                    ->assertAttribute("#shopping-item-1 div span.name", 'class', 'name line-through')
+                    ->refresh()
+                    ->assertChecked($checkbox, 'Crossing items off of the list is not persisting across page reloads');
         });
     }
 }
