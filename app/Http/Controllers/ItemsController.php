@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Item;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -14,27 +15,8 @@ class ItemsController extends Controller
      */
     public function index()
     {
-        $items = [
-            [
-                "name" => "Tofu",
-                "purchased" => false,
-            ],
-            [
-                "name" => "Courgette",
-                "purchased" => false,
-            ],
-        ];
+        $items = Item::all();
         return Inertia::render('Items/Index.vue', compact('items'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -45,29 +27,15 @@ class ItemsController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'name' => ['required'],
+        ]);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $item = new Item();
+        $item->name = $request->name;
+        $item->save();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        return redirect()->route('items.index');
     }
 
     /**
@@ -77,9 +45,16 @@ class ItemsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Item $item)
     {
-        //
+        $request->validate([
+            'purchased' => ['required', 'boolean'],
+        ]);
+
+        $item->purchased = $request->purchased;
+        $item->save();
+
+        return redirect()->route('items.index');
     }
 
     /**
@@ -88,8 +63,10 @@ class ItemsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Item $item)
     {
-        //
+        $item->delete();
+
+        return redirect()->route('items.index');
     }
 }
