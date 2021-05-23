@@ -44,7 +44,7 @@ class ItemTest extends TestCase
     {
         $user = User::factory()->create();
         Auth::login($user);
-        $item = Item::factory()->create();
+        $item = Item::factory()->for($user)->create();
 
         $response = $this->put(route('users.items.update', [$user, $item]), [
             'purchased' => true,
@@ -67,7 +67,7 @@ class ItemTest extends TestCase
     {
         $user = User::factory()->create();
         Auth::login($user);
-        $item = Item::factory()->purchased()->create();
+        $item = Item::factory()->purchased()->for($user)->create();
 
         $response = $this->put(route('users.items.update', [$user, $item]), [
             'purchased' => false,
@@ -90,7 +90,7 @@ class ItemTest extends TestCase
     {
         $user = User::factory()->create();
         Auth::login($user);
-        $item = Item::factory()->create();
+        $item = Item::factory()->for($user)->create();
 
         $this->assertDatabaseHas('items', [
             'id' => $item->id,

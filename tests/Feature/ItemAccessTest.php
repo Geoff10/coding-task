@@ -22,7 +22,7 @@ class ItemAccessTest extends TestCase
         $user = User::factory()->create();
         $response = $this->get(route('users.items.index', [$user]));
 
-        $response->assertStatus(403);
+        $response->assertRedirect('/login');
     }
 
     /**
